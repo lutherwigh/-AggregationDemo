@@ -33,6 +33,10 @@ export default {
                     index: 2,
                     name: "discuss",
                     icon: " "
+                },
+                {
+                    index: 3,
+                    name: "newHome"
                 }
             ],
         };
@@ -40,6 +44,10 @@ export default {
     methods: {
         changeTab: function(item) {
             this.activeIndex = item.index;
+            if(item.index == 3) this.goto();
+        },
+        goto: function(){
+            this.$router.push('/homeMuse');
         }
     }
 };

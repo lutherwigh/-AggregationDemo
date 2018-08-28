@@ -5,6 +5,7 @@ import HomeSearch from '../pages/HomeSearch.vue'
 import Info from '../pages/Info.vue'
 import Discuss from '../pages/Discuss.vue'
 import LaptopDetail from '../pages/LaptopDetail.vue'
+import HomeMuse from '../pages/HomeMuse.vue'
 
 Vue.use(Router)
 
@@ -12,7 +13,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/homeMuse'
     },
     {
       path: '/home',
@@ -33,6 +34,11 @@ export default new Router({
       path: '/detail',
       name: 'detail',
       component: LaptopDetail
+    },
+    {
+      path: '/homeMuse',
+      name: 'homeMuse',
+      component: HomeMuse
     }
   ]
 })
