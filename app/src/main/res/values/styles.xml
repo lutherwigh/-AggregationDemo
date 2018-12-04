@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- login -->
+
+    <style name="login_account_func_text_style">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>
