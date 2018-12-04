@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import moe.luther.demo.R;
-import moe.luther.demo.page.MainActivity;
+import moe.luther.demo.page.main.activity.MainActivity;
 import moe.luther.demo.page.login.LoginManager;
 import moe.luther.demo.page.login.activity.LoginActivity;
 

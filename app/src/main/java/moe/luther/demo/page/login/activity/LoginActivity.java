@@ -9,7 +9,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.OnClick;
 import moe.luther.demo.R;
-import moe.luther.demo.page.MainActivity;
+import moe.luther.demo.page.main.activity.MainActivity;
 import moe.luther.demo.page.login.LoginManager;
 
 public class LoginActivity extends AppCompatActivity {
