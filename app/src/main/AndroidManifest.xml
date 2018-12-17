@@ -11,19 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".page.main.activity.MainActivity">
-        </activity>
-
-        <activity android:name=".page.splash.SplashActivity" >
+        <activity android:name=".page.main.activity.MainActivity"></activity>
+        <activity android:name=".page.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".page.login.activity.LoginActivity" />
+        <activity
+            android:name=".page.login.activity.LoginActivity"
+            android:launchMode="singleInstance" />
         <activity android:name=".page.login.activity.RegisterActivity" />
+        <activity android:name=".page.login.activity.ResetActivity"></activity>
     </application>
 
 </manifest>
