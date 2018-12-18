@@ -1,11 +1,11 @@
 package moe.luther.demo.data;
 
-import com.luxi96.cardviewdemo.bean.NewsBean;
-import com.luxi96.cardviewdemo.data.api.JuheAPI;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observer;
+import moe.luther.demo.data.api.JuheAPI;
+import moe.luther.demo.data.bean.NewsBean;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JuheRetrofitance extends BaseRetrofitance {
