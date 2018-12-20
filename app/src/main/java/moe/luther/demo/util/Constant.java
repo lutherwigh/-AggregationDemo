@@ -1,4 +1,4 @@
-package moe.luther.demo;
+package moe.luther.demo.util;
 
 public class Constant {
 

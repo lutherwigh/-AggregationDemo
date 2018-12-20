@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.Objects;
+
 import moe.luther.demo.R;
 import moe.luther.demo.page.main.activity.MainActivity;
 import moe.luther.demo.page.login.LoginManager;

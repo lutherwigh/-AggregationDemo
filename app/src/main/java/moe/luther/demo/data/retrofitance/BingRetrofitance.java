@@ -1,10 +1,10 @@
-package moe.luther.demo.data;
+package moe.luther.demo.data.retrofitance;
 
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observer;
-import moe.luther.demo.Constant;
+import moe.luther.demo.util.Constant;
 import moe.luther.demo.data.api.BingAPI;
 import moe.luther.demo.data.bean.BingBean;
 import retrofit2.Retrofit;

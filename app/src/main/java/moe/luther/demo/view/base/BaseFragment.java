@@ -1,4 +1,4 @@
-package moe.luther.demo.base;
+package moe.luther.demo.view.base;
 
 import android.content.Context;
 import android.os.Bundle;

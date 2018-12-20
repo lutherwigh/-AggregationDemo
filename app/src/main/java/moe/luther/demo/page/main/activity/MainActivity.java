@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import moe.luther.demo.R;
-import moe.luther.demo.base.BaseActivity;
+import moe.luther.demo.view.base.BaseActivity;
 import moe.luther.demo.page.main.adapter.MainPagerAdapter;
 import moe.luther.demo.page.main.fragment.*;
 
@@ -35,21 +36,15 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.main_tableLayout)
     TabLayout tabLayout;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        init();
-    }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
-
-    void init(){
-
+    @Override
+    public void init(Bundle bundle) {
         initToolbar();
 
         titles = new ArrayList<>();
@@ -69,25 +64,27 @@ public class MainActivity extends BaseActivity {
         fragments.add(myFragment);
 
         pagerAdapter = new MainPagerAdapter(getSupportFragmentManager(),MainActivity.this, fragments,titles);
+
         pagerAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
-                toolbar.setTitle(pagerAdapter.getPageTitle(pager.getVerticalScrollbarPosition()));
+                getSupportActionBar().setTitle(pager.getCurrentItem());
+                toolbar.setTitle(titles.get(pager.getCurrentItem()));
             }
         });
         pager.setAdapter(pagerAdapter);
 
         tabLayout.setupWithViewPager(pager);
-
     }
 
     void initToolbar(){
+        // transparent();
         setSupportActionBar(toolbar);
-        toolbar.setVisibility(View.INVISIBLE);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
     }
-
-    // todo 监听返回事件 再按一次退出程序
 
     // todo 获取当前tab name
     public String getTabName(){

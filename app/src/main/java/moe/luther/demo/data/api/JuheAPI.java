@@ -1,8 +1,8 @@
 package moe.luther.demo.data.api;
 
-import com.luxi96.cardviewdemo.bean.NewsBean;
 
 import io.reactivex.Observable;
+import moe.luther.demo.data.bean.NewsBean;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 

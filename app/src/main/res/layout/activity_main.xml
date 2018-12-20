@@ -10,6 +10,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        app:title="toolbar"
         android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:layout_height="30dp" />
@@ -24,6 +25,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorAccent"/>
 
     <android.support.design.widget.TabLayout

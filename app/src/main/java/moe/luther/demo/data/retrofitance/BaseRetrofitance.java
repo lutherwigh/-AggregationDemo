@@ -1,4 +1,4 @@
-package moe.luther.demo.data;
+package moe.luther.demo.data.retrofitance;
 
 import java.util.concurrent.TimeUnit;
 
