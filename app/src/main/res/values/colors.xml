@@ -8,4 +8,6 @@
     <color name="main_tab_background">#dcdcdc</color>
     <color name="main_tab_selected_text">#333333</color>
     <color name="main_tab_indicator">#888888</color>
+
+    <color name="item_card_placeholder_gray">#777777</color>
 </resources>

@@ -1,6 +1,8 @@
 package moe.luther.demo.page.main.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,10 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
@@ -25,11 +25,9 @@ import butterknife.Unbinder;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import moe.luther.demo.R;
-import moe.luther.demo.data.api.NewsAPI;
 import moe.luther.demo.data.bean.NewsBean;
 import moe.luther.demo.data.retrofitance.JuheRetrofitance;
 import moe.luther.demo.page.adapter.JuheHomeRecyclerAdapter;
-import moe.luther.demo.page.main.adapter.HomeRecyclerAdapter;
 import moe.luther.demo.view.base.BaseFragment;
 
 public class HomeFragment extends BaseFragment {
@@ -49,6 +47,20 @@ public class HomeFragment extends BaseFragment {
 
     private int page = 1;
 
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    Log.d(TAG,"handleMessage onNext " + list.size());
+                    // adapter.notifyDataSetChanged();
+                    adapter.setNewData(list);
+                    break;
+            }
+            return false;
+        }
+    });
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle bundle){
         View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_home,null,false);
@@ -58,6 +70,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 // todo 修改page
+
             }
 
             @Override
@@ -83,7 +96,7 @@ public class HomeFragment extends BaseFragment {
     void initRecycler(){
         // todo card item
         list = new ArrayList<>();
-        adapter = new JuheHomeRecyclerAdapter(R.layout.item_home_card_view,list);
+        adapter = new JuheHomeRecyclerAdapter(R.layout.item_home_card_view,list,getContext());
         adapter.setOnItemClickListener((adapter, view, position) -> {
 
         });
@@ -101,7 +114,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onNext(NewsBean newsBean) {
                 list = newsBean.getResult().getData();
-
+                handler.sendEmptyMessage(1);
             }
 
             @Override

@@ -1,6 +1,8 @@
 package moe.luther.demo.page.adapter;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -14,8 +16,11 @@ import moe.luther.demo.data.bean.NewsBean;
 
 public class JuheHomeRecyclerAdapter extends BaseQuickAdapter<NewsBean.ResultBean.DataBean,BaseViewHolder> {
 
-    public JuheHomeRecyclerAdapter(int layoutResId, @Nullable List<NewsBean.ResultBean.DataBean> data) {
+    Context mContext;
+
+    public JuheHomeRecyclerAdapter(int layoutResId, @Nullable List<NewsBean.ResultBean.DataBean> data, Context context) {
         super(layoutResId, data);
+        mContext = context;
     }
 
     @Override
@@ -23,22 +28,13 @@ public class JuheHomeRecyclerAdapter extends BaseQuickAdapter<NewsBean.ResultBea
         helper.setText(R.id.card_home_source_tv,item.getAuthor_name())
         .setText(R.id.card_home_title_tv,item.getTitle())
         .setText(R.id.card_home_content_tv,item.getDate());
-        // source_tv.setText(bean.getAuthor_name());
-        // title_tv.setText(bean.getTitle());
-        // String content = bean.getType() + "  " + bean.getDate();
-        // content_tv.setText(content);
-        // getPic(bean.getThumbnail_pic_s());
+        ImageView background = (ImageView) helper.getView(R.id.card_home_bg);
+        Glide.with(mContext)
+                .load(item.getThumbnail_pic_s())
+                .placeholder(R.color.item_card_placeholder_gray)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .crossFade()
+                .into(background);
     }
-
-
-    //    void getPic(String url){
-//
-//        Glide.with(this)
-//                .load(url)
-//                .placeholder(R.color.cardview_dark_background)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .crossFade()
-//                .into(cardBackground_iv);
-//    }
 
 }
