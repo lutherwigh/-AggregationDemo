@@ -30,7 +30,8 @@ public class JuheHomeRecyclerAdapter extends BaseQuickAdapter<NewsBean.ResultBea
         // getPic(bean.getThumbnail_pic_s());
     }
 
-//    void getPic(String url){
+
+    //    void getPic(String url){
 //
 //        Glide.with(this)
 //                .load(url)
