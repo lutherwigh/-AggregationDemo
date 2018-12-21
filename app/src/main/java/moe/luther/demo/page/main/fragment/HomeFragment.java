@@ -1,5 +1,6 @@
 package moe.luther.demo.page.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.facebook.stetho.common.LogUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ import moe.luther.demo.R;
 import moe.luther.demo.data.bean.NewsBean;
 import moe.luther.demo.data.retrofitance.JuheRetrofitance;
 import moe.luther.demo.page.adapter.JuheHomeRecyclerAdapter;
+import moe.luther.demo.page.main.activity.DetailActivity;
 import moe.luther.demo.view.base.BaseFragment;
 
 public class HomeFragment extends BaseFragment {
@@ -44,6 +48,10 @@ public class HomeFragment extends BaseFragment {
     JuheHomeRecyclerAdapter adapter;
 
     List<NewsBean.ResultBean.DataBean> list;
+
+    private boolean isLoadMore = false;
+
+    private boolean isPause = false;
 
     private int page = 1;
 
@@ -66,16 +74,24 @@ public class HomeFragment extends BaseFragment {
         View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_home,null,false);
         unbinder = ButterKnife.bind(this,root);
         initRecycler();
+
+        ClassicsHeader header = new ClassicsHeader(this.getContext());
+        header.setPrimaryColorId(R.color.home_refresh_header_gray);
+        refreshLayout.setRefreshHeader(header);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 // todo 修改page
-
+                // 不只是修改page 需要重新增加list
+                isLoadMore = true;
+                getNews();
+                refreshLayout.finishLoadMore(2000);
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 getNews();
+                refreshLayout.finishRefresh(2000);
             }
         });
         return root;
@@ -84,7 +100,16 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume(){
         super.onResume();
-        getNews();
+        if(!isPause){
+            getNews();
+        }
+        isPause = false;
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        isPause = true;
     }
 
     @Override
@@ -98,7 +123,15 @@ public class HomeFragment extends BaseFragment {
         list = new ArrayList<>();
         adapter = new JuheHomeRecyclerAdapter(R.layout.item_home_card_view,list,getContext());
         adapter.setOnItemClickListener((adapter, view, position) -> {
+            switch (view.getId()){
 
+                default:
+                    Log.d(TAG,"item click " + position + " to " + list.get(position).getUrl());
+                    Intent intent = new Intent(this.getActivity(),DetailActivity.class);
+                    intent.putExtra("url",list.get(position).getUrl());
+                    startActivity(intent);
+                    break;
+            }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -113,14 +146,28 @@ public class HomeFragment extends BaseFragment {
 
             @Override
             public void onNext(NewsBean newsBean) {
-                list = newsBean.getResult().getData();
-                handler.sendEmptyMessage(1);
+                if(newsBean != null){
+                    if(newsBean.getResult() != null){
+                        if(isLoadMore){
+                            list.addAll(newsBean.getResult().getData());
+                            handler.sendEmptyMessage(1);
+                            isLoadMore = false;
+                        }else {
+                            if(newsBean.getResult().getData() != null){
+                                list = newsBean.getResult().getData();
+                                handler.sendEmptyMessage(1);
+                            }
+                        }
+                    }else{
+                        LogUtil.d("response error code: " + newsBean.getError_code());
+                    }
+                }
             }
 
             @Override
             public void onError(Throwable e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(),"文字获取失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"主页信息获取失败",Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -9,5 +9,8 @@
     <color name="main_tab_selected_text">#333333</color>
     <color name="main_tab_indicator">#888888</color>
 
+    <!-- home-->
     <color name="item_card_placeholder_gray">#777777</color>
+    <color name="home_refresh_header_gray">#dcdcdc</color>
+
 </resources>

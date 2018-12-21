@@ -1,4 +1,4 @@
-package moe.luther.demo.data.bean;
+package moe.luther.demo.data.bean.gank;
 
 import java.util.List;
 

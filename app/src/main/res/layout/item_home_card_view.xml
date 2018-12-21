@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:elevation="5dp"
+    android:layout_margin="10dp"
     android:gravity="center"
     android:background="@drawable/realcard_bg">
 
     <ImageView
         android:id="@+id/card_home_bg"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
         android:background="@drawable/luoyonghao"/>
 
@@ -19,14 +20,17 @@
         android:text="锤子科技"
         android:textSize="10sp"
         android:textColor="#eeeeee"
-        android:padding="5dp"
+        android:maxLines="1"
+        android:layout_margin="5dp"
+        android:gravity="center"
         android:background="@drawable/card_source_round_bg"
         android:drawableTop="@drawable/ic_title_black_24dp"
         android:layout_width="50dp"
         android:layout_height="50dp" />
+
     <TextView
         android:id="@+id/card_home_title_tv"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="130dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -36,8 +40,10 @@
 
     <TextView
         android:id="@+id/card_home_content_tv"
-        android:paddingLeft="5dp"
-        android:layout_marginTop="100dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="right"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="苹果母公司CEO公孙永浩称又不是不能用"/>

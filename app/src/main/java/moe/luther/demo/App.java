@@ -3,6 +3,8 @@ package moe.luther.demo;
 import android.app.Activity;
 import android.app.Application;
 
+import com.zzhoujay.richtext.RichText;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class App extends Application {
         activityList = new ArrayList<>();
         // 登录模块初始化
         LoginManager.init();
+
+        RichText.initCacheDir(this);
     }
 
     public static App getInstance(){

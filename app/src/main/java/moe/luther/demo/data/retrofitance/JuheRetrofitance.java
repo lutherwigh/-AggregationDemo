@@ -3,11 +3,18 @@ package moe.luther.demo.data.retrofitance;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import moe.luther.demo.data.api.JuheAPI;
 import moe.luther.demo.data.bean.NewsBean;
+import moe.luther.demo.util.Constant;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class JuheRetrofitance extends BaseRetrofitance {
 
@@ -48,9 +55,22 @@ public class JuheRetrofitance extends BaseRetrofitance {
 
     public void getNews(Observer<NewsBean> subscriber) {
         int position = (int) (Math.random() * 10);
-        String URL = "http://v.juhe.cn/toutiao/index?type=" + titles_en[position]
+        String URL = "http://v.juhe.cn/toutiao/index?type=" + titles_en[0]
                 + "&key=53555bf8010e1bf9c42cc0f9fbe8578a";
         commonOp(api.getNews(URL),subscriber);
+    }
+
+    public void getHtml(Callback<String> callback, String url){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .baseUrl(Constant.BING_BASE_URL)
+                .build();
+        JuheAPI juheAPI = retrofit.create(JuheAPI.class);
+        Call<String> call = juheAPI.getHtml(url);
+        call.enqueue(callback);
+
+        // api.getHtml(url).enqueue(callback);
     }
 
 }

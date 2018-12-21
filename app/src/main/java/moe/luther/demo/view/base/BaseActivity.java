@@ -150,6 +150,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             lastBack = System.currentTimeMillis();
             return;
         }
+        App.getInstance().removeALLActivity();
         super.onBackPressed();
     }
 
