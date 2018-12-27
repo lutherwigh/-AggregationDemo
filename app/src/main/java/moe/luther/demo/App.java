@@ -6,6 +6,7 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.goldze.mvvmhabit.base.BaseApplication;
 import moe.luther.demo.page.login.LoginManager;
 
 public class App extends BaseApplication {
