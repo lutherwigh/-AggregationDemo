@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import moe.luther.demo.R;
@@ -42,8 +40,6 @@ public class HomeFragment extends BaseFragment {
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.home_recycler)
     RecyclerView recyclerView;
-
-    Unbinder unbinder;
 
     JuheHomeRecyclerAdapter adapter;
 
@@ -71,10 +67,10 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle bundle){
-        View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_home,null,false);
-        unbinder = ButterKnife.bind(this,root);
-        initRecycler();
 
+        super.onCreateView(inflater,parent,bundle);
+
+        initRecycler();
         ClassicsHeader header = new ClassicsHeader(this.getContext());
         header.setPrimaryColorId(R.color.home_refresh_header_gray);
         refreshLayout.setRefreshHeader(header);
@@ -94,7 +90,13 @@ public class HomeFragment extends BaseFragment {
                 refreshLayout.finishRefresh(2000);
             }
         });
-        return root;
+
+        return rootView;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -110,12 +112,6 @@ public class HomeFragment extends BaseFragment {
     public void onPause(){
         super.onPause();
         isPause = true;
-    }
-
-    @Override
-    public void onDestroyView(){
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     void initRecycler(){

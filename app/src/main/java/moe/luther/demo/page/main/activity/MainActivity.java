@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +28,15 @@ public class MainActivity extends BaseActivity {
     SubscribeFragment subscribeFragment;
 
     MainPagerAdapter pagerAdapter;
-    // todo 分页显示 底部三页 首页 订阅 我的
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.toolbar_title)
+    TextView toolbar_title;
     @BindView(R.id.main_vp)
     ViewPager pager;
     @BindView(R.id.main_tableLayout)
     TabLayout tabLayout;
-
-
 
     @Override
     protected int getLayoutId() {
@@ -79,9 +79,9 @@ public class MainActivity extends BaseActivity {
     }
 
     void initToolbar(){
-        // transparent();
+        transparent();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("toolbar");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
     }

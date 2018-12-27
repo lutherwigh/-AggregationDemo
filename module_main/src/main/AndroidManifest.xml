@@ -1,2 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="outlook.luxi96.module_main" />
+    package="outlook.luxi96.module_main">
+
+    <application>
+        <activity android:name="moe.luther.main.ui.MainActivity"></activity>
+    </application>
+
+</manifest>

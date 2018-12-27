@@ -2,7 +2,6 @@ package moe.luther.demo.page.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -20,7 +19,6 @@ public class JuheHomeRecyclerAdapter extends BaseQuickAdapter<NewsBean.ResultBea
 
     Context mContext;
 
-//    onItemClickListener listener;
 
     public JuheHomeRecyclerAdapter(int layoutResId, @Nullable List<NewsBean.ResultBean.DataBean> data, Context context) {
         super(layoutResId, data);
