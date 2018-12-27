@@ -1,16 +1,14 @@
 package moe.luther.demo;
 
 import android.app.Activity;
-import android.app.Application;
 
-import com.zzhoujay.richtext.RichText;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import moe.luther.demo.page.login.LoginManager;
 
-public class App extends Application {
+public class App extends BaseApplication {
 
 
     // todo 计划在这里初始化登录模块、数据模块、可能还要设置 refreshLayout header
@@ -30,7 +28,7 @@ public class App extends Application {
         // 登录模块初始化
         LoginManager.init();
 
-        RichText.initCacheDir(this);
+        // RichText.initCacheDir(this);
     }
 
     public static App getInstance(){
