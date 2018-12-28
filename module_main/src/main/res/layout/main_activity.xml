@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     >
 
     <data>
 
         <variable
             name="viewModel"
-            type="me.goldze.mvvmhabit.base.BaseViewModel"
+            type="outlook.luxi96.module_main.viewmodel.MainViewModel"
             />
 
     </data>
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_horizontal"
+            binding:title="@{viewModel.toolbarTitle}"
+            app:titleTextColor="@color/main_toolbar_white"
+            app:titleMarginTop="5dp"
+            android:background="@color/main_toolbar_gray_900"/>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/main_toolbar_white"/>
 
         <FrameLayout
             android:id="@+id/main_fragment_container"

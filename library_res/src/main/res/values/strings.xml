@@ -13,6 +13,8 @@
     <!--  main -->
     <string name="main_home">业务模块</string>
     <string name="home_name">主页模块</string>
-
+    <string name="main_tabs_home">首页</string>
+    <string name="main_tabs_gank">gank</string>
+    <string name="main_tabs_my">我的</string>
 
 </resources>

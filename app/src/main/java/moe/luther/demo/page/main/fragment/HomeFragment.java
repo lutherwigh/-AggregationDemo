@@ -113,7 +113,7 @@ public class HomeFragment extends BaseFragment {
 //    void initRecycler(){
 //        // todo card item
 //        list = new ArrayList<>();
-//        adapter = new JuheHomeRecyclerAdapter(R.layout.item_home_card_view,list,getContext());
+//        adapter = new JuheHomeRecyclerAdapter(R.layout.home_recycler_item_card_view,list,getContext());
 //        adapter.setOnItemClickListener((adapter, view, position) -> {
 //            switch (view.getId()){
 //

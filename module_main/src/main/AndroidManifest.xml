@@ -3,7 +3,8 @@
     package="outlook.luxi96.module_main">
 
     <application>
-        <activity android:name="outlook.luxi96.module_main.ui.MainActivity"/>
+        <activity android:name="outlook.luxi96.module_main.ui.MainActivity"
+            android:theme="@style/MainTheme"/>
         <activity android:name="outlook.luxi96.module_main.ui.SplashActivity"/>
     </application>
 

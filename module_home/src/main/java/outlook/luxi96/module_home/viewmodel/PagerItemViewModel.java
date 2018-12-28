@@ -13,6 +13,7 @@ public class PagerItemViewModel extends ItemViewModel {
     public String text;
     public SingleLiveEvent<String> clickEvent = new SingleLiveEvent();
 
+
     public PagerItemViewModel(@NonNull BaseViewModel viewModel, String text) {
         super(viewModel);
         this.text = text;

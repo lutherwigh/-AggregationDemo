@@ -18,6 +18,8 @@ import outlook.luxi96.module_home.BR;
 
 public class HomeViewModel extends BaseViewModel {
 
+    // 需要拉取数据
+
     public ObservableList<PagerItemViewModel> items = new ObservableArrayList<>();
 
     public ItemBinding<PagerItemViewModel> itemBinding = ItemBinding.of(BR.viewModel, R.layout.item_viewpager);
@@ -25,7 +27,7 @@ public class HomeViewModel extends BaseViewModel {
     public final BindingViewPagerAdapter.PageTitles<PagerItemViewModel> pageTitles = new BindingViewPagerAdapter.PageTitles<PagerItemViewModel>() {
         @Override
         public CharSequence getPageTitle(int position, PagerItemViewModel item) {
-            return position + "";
+            return position + "title";
         }
     };
 

@@ -33,6 +33,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding,HomeViewModel
         // 使用 TabLayout 和 ViewPager 相关联
         binding.homeTabs.setupWithViewPager(binding.homePager);
         binding.homePager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.homeTabs));
+
     }
 
     @Override
