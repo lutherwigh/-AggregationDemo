@@ -19,8 +19,8 @@ public class RouterActivityPath {
     /**
      * 身份验证组件
      */
-    public static class Sign {
-        private static final String SIGN = "/sign";
+    public static class Login {
+        private static final String SIGN = "/login";
         /*登录界面*/
         public static final String PAGER_LOGIN = SIGN + "/Login";
     }

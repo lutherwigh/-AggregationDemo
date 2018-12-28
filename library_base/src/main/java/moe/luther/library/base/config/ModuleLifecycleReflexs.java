@@ -7,7 +7,7 @@ package moe.luther.library.base.config;
  */
 
 public class ModuleLifecycleReflexs {
-    private static final String BaseInit = "com.goldze.base.base.BaseModuleInit";
+    private static final String BaseInit = "moe.luther.library.base.base.BaseModuleInit";
     //主业务模块
     private static final String MainInit = "com.goldze.main.MainModuleInit";
     //登录验证模块

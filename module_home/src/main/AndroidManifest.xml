@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="outlook.luxi96.module_home" />
+package="outlook.luxi96.module_home" >
+
+<application></application>
+
+</manifest>

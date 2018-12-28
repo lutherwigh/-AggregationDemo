@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="outlook.luxi96.module_login" >
+
+    <application
+        android:name="moe.luther.library.base.debug.DebugApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/login_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+
+        <activity android:name=".ui.ResetActivity"/>
+        <activity android:name=".ui.RegisterActivity"/>
+    </application>
+
+</manifest>

@@ -5,15 +5,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import moe.luther.demo.R;
 import moe.luther.demo.view.base.BaseActivity;
 import moe.luther.demo.page.main.adapter.MainPagerAdapter;
@@ -29,18 +26,14 @@ public class MainActivity extends BaseActivity {
 
     MainPagerAdapter pagerAdapter;
 
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
-    @BindView(R.id.main_vp)
     ViewPager pager;
-    @BindView(R.id.main_tableLayout)
     TabLayout tabLayout;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.main_activity;
     }
 
     @Override

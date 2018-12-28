@@ -2,18 +2,16 @@ package moe.luther.demo.view.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import javax.annotation.Nullable;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public abstract class BaseFragment extends android.support.v4.app.Fragment {
 
-    Unbinder unbinder;
+    // Unbinder unbinder;
 
     public View rootView;
 
@@ -25,7 +23,7 @@ public abstract class BaseFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,Bundle bundle){
         rootView = LayoutInflater.from(this.getContext()).inflate(getLayoutId(),parent,false);
-        unbinder = ButterKnife.bind(this,rootView);
+       // unbinder = ButterKnife.bind(this,rootView);
         return rootView;
     }
 
@@ -46,7 +44,7 @@ public abstract class BaseFragment extends android.support.v4.app.Fragment {
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        unbinder.unbind();
+        // unbinder.unbind();
     }
 
     protected abstract int  getLayoutId();

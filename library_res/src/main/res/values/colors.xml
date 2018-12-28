@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--main-->
     <color name="main_bottom_tab_bg_gray">#6C6C6C</color>
+    <color name="main_bg_gray_400">#bdbdbd</color>
+    <color name="main_tab_background">#dcdcdc</color>
+    <color name="main_tab_selected_text">#333333</color>
+    <color name="main_tab_indicator">#888888</color>
+    <color name="main_toolbar_gray_900">#212121</color>
+    <color name="main_toolbar_white">#fafafa</color>
+
+    <!-- home-->
+    <color name="item_card_placeholder_gray">#777777</color>
+    <color name="home_refresh_header_gray">#dcdcdc</color>
+    <color name="item_card_bg_light_blue">#e1f5fe</color>
+    <color name="item_card_bottom_panel_bg">#fafafa</color>
 
 </resources>

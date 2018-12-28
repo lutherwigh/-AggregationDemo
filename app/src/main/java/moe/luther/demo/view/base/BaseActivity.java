@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import moe.luther.demo.App;
 import moe.luther.demo.page.login.LoginManager;
 import moe.luther.demo.page.login.activity.LoginActivity;
@@ -31,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private boolean isCheckLogin;
 
-    private Unbinder unbinder;
+    // private Unbinder unbinder;
 
     private static long lastClickTime;
 
@@ -48,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         App.getInstance().addActivity(this);
-        unbinder = ButterKnife.bind(this);
+        // unbinder = ButterKnife.bind(this);
         init(bundle);
     }
 
@@ -66,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        unbinder.unbind();
+        // unbinder.unbind();
         App.getInstance().removeActivity(this);
     }
 

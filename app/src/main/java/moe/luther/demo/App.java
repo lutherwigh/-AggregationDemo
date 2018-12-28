@@ -8,6 +8,7 @@ import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseApplication;
 import moe.luther.demo.page.login.LoginManager;
+import moe.luther.library.base.config.ModuleLifecycleConfig;
 
 public class App extends BaseApplication {
 
@@ -19,6 +20,12 @@ public class App extends BaseApplication {
 
     @Override
     public void onCreate(){
+
+        ModuleLifecycleConfig.getInstance().initModuleAhead(this);
+        //....
+        //初始化组件(靠后)
+        ModuleLifecycleConfig.getInstance().initModuleLow(this);
+
         super.onCreate();
         instance = App.this;
         init();

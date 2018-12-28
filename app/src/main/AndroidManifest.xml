@@ -15,21 +15,22 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".page.main.activity.MainActivity"
-            android:theme="@style/MainTheme" />
-        <activity android:name=".page.splash.SplashActivity">
+            android:name="outlook.luxi96.module_main.ui.SplashActivity"
+            android:theme="@style/MainTheme"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".page.login.activity.LoginActivity"
-            android:launchMode="singleInstance" />
-        <activity android:name=".page.login.activity.RegisterActivity" />
-        <activity android:name=".page.login.activity.ResetActivity" />
-        <activity android:name=".page.main.activity.DetailActivity"></activity>
+
+        <activity android:name=".page.splash.SplashActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

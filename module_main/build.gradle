@@ -4,7 +4,7 @@ android {
     defaultConfig {
         //如果是独立模块，则使用当前组件的包名
         if (isBuildModule.toBoolean()) {
-            applicationId "com.goldze.home"
+            applicationId "moe.luther.main"
         }
     }
     //统一资源前缀，规范资源引用
@@ -17,8 +17,10 @@ dependencies {
     //组件依赖基础库
     api project(':library_base')
     //组件中依赖阿里路由编译框架
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 
     implementation 'me.majiajie:pager-bottom-tab-strip:2.2.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
