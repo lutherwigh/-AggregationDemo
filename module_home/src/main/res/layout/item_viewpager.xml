@@ -6,7 +6,7 @@
         <import type="outlook.luxi96.module_home.viewmodel.PagerItemViewModel" />
 
         <variable
-            name="viewModel"
+            name="page"
             type="outlook.luxi96.module_home.viewmodel.PagerItemViewModel" />
     </data>
 
@@ -16,31 +16,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackground"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/home_refresh"
+        <TextView
+            binding:onClickCommand="@{page.onClick}"
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="刷新"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
 
-            <TextView
-                binding:onClickCommand="@{viewModel.onClick}"
-                android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:text="@{viewModel.text}" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rv xia"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/home_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp">
+        <!--<android.support.v4.widget.SwipeRefreshLayout-->
+            <!--android:id="@+id/home_refresh"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:onRefreshListener="@{page.onRefrshListener}"-->
+            <!--app:refreshing="@{page.isRefreshing}"-->
+            <!--&gt;-->
 
-            </android.support.v7.widget.RecyclerView>
 
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+            <!--</android.support.v7.widget.RecyclerView>-->
+
 
 
     </LinearLayout>

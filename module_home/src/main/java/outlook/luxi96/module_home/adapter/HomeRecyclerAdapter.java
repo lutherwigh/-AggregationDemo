@@ -16,10 +16,10 @@ import outlook.luxi96.module_home.model.bean.NewsBean;
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder> {
 
     List<CardBean> mList;
-
-    public HomeRecyclerAdapter(List<NewsBean.ResultBean.DataBean> mList) {
-        this.mList = mList;
-    }
+//
+//    public HomeRecyclerAdapter(List<NewsBean.ResultBean.DataBean> mList) {
+//        this.mList = mList;
+//    }
 
     @NonNull
     @Override

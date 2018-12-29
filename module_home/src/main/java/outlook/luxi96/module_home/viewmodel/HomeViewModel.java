@@ -18,41 +18,51 @@ import outlook.luxi96.module_home.BR;
 
 public class HomeViewModel extends BaseViewModel {
 
-    // 需要拉取数据
+    private String[] titles = {"Android","iOS","前端","拓展"};
 
     public ObservableList<PagerItemViewModel> items = new ObservableArrayList<>();
 
-    public ItemBinding<PagerItemViewModel> itemBinding = ItemBinding.of(BR.viewModel, R.layout.item_viewpager);
+    public ItemBinding<PagerItemViewModel> itemBinding = ItemBinding.of(BR.page, R.layout.item_viewpager);
 
     public final BindingViewPagerAdapter.PageTitles<PagerItemViewModel> pageTitles = new BindingViewPagerAdapter.PageTitles<PagerItemViewModel>() {
         @Override
         public CharSequence getPageTitle(int position, PagerItemViewModel item) {
-            return position + "title";
+            return titles[position];
         }
     };
 
     public BindingCommand<Integer> onPagerSelectCommand = new BindingCommand<Integer>(new BindingConsumer<Integer>() {
         @Override
         public void call(Integer index) {
-            ToastUtils.showShort("pager 切换" + index );
+            setPage(index);
+            ToastUtils.showShort("pager 切换到" + titles[index] );
         }
     });
 
-    public final ViewPagerBindingAdapter adapter = new ViewPagerBindingAdapter();
+    public final ViewPagerBindingAdapter adapter = new ViewPagerBindingAdapter(getApplication());
 
     public HomeViewModel(@NonNull Application application) {
+        // adapter.onBindBinding();
         super(application);
     }
 
     /**
      * 设置 home pages
      */
-    public void setPages(){
+    public void initPages(){
+
         items.clear();
-        //模拟3个ViewPager页面
-        for (int i = 1; i <= 3; i++) {
-            PagerItemViewModel itemViewModel = new PagerItemViewModel(this, "第" + i + "个页面");
+        for (int i = 0; i < titles.length; i++) {
+            PagerItemViewModel itemViewModel = new PagerItemViewModel(this, titles[i]);
+            // ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater,R.layout.item_viewpager,)
             items.add(itemViewModel);
+        }
+        setPage(0);
+    }
+
+    public void setPage(int position){
+        if(position >=0 && position <= titles.length){// 防止越界
+
         }
     }
 

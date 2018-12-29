@@ -7,6 +7,7 @@ import outlook.luxi96.module_home.model.bean.NewsBean;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JuheRetrofitance extends BaseRetrofitance {
@@ -39,7 +40,7 @@ public class JuheRetrofitance extends BaseRetrofitance {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
-                // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
 

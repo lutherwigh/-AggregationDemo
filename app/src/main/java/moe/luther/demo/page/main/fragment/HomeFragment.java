@@ -48,18 +48,18 @@ public class HomeFragment extends BaseFragment {
 //    private int page = 1;
 //
 //    Handler handler = new Handler(new Handler.Callback() {
-//        @Override
-//        public boolean handleMessage(Message msg) {
-//            switch (msg.what){
-//                case 1:
-//                    Log.d(TAG,"handleMessage onNext " + list.size());
-//                    // adapter.notifyDataSetChanged();
-//                    adapter.setNewData(list);
-//                    break;
-//            }
-//            return false;
-//        }
-//    });
+////        @Override
+////        public boolean handleMessage(Message msg) {
+////            switch (msg.what){
+////                case 1:
+////                    Log.d(TAG,"handleMessage onNext " + list.size());
+////                    // adapter.notifyDataSetChanged();
+////                    adapter.setNewData(list);
+////                    break;
+////            }
+////            return false;
+////        }
+////    });
 //
 //    @Override
 //    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle bundle){

@@ -11,17 +11,21 @@ public class CardBean {
 
     private String picUrl;
     // 随机生成
-    private int like;
+    private String like;
 
-    private int dislike;
+    private String dislike;
 
     private String htmlUrl;
 
     // 将json获取数据转为CardBean
     public CardBean(NewsBean.ResultBean.DataBean bean) {
-
-
-
+        this.source = bean.getAuthor_name();
+        this.title = bean.getTitle();
+        this.text = bean.getDate();
+        this.picUrl = bean.getThumbnail_pic_s();
+        this.htmlUrl = bean.getUrl();
+        this.like = String.valueOf((int)(Math.random() * 100));
+        this.dislike = String.valueOf((int)(Math.random() * 100));
     }
 
     public String getSource() {
@@ -40,11 +44,11 @@ public class CardBean {
         return picUrl;
     }
 
-    public int getLike() {
+    public String getLike() {
         return like;
     }
 
-    public int getDislike() {
+    public String getDislike() {
         return dislike;
     }
 

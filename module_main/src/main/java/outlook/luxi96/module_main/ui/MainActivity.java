@@ -49,9 +49,12 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
 
     private void initFragments(){
         Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation();
+        Fragment gankFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Gank.PAGER_GANK).navigation();
 
         mFragments = new ArrayList<>();
         mFragments.add(homeFragment);
+        mFragments.add(gankFragment);
+
         changeFragment(homeFragment);
     }
 
@@ -66,7 +69,12 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
         controller.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int index, int old) {
-                changeFragment(mFragments.get(0));
+                if(index == 0 || index == 1){
+                    changeFragment(mFragments.get(index));
+                }else {
+                    changeFragment(mFragments.get(0));
+                }
+
                 binding.toolbar.setTitle(controller.getItemTitle(index));
             }
 
