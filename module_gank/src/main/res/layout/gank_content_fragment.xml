@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="content"
+            name="content_model"
             type="outlook.luxi96.module_gank.viewmodel.GankContentFragmentViewModel"/>
 
     </data>

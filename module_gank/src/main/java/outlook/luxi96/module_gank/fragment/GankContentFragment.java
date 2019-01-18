@@ -19,6 +19,6 @@ public class GankContentFragment extends BaseFragment<GankContentFragmentBinding
 
     @Override
     public int initVariableId() {
-        return 0;
+        return BR.content_model;
     }
 }

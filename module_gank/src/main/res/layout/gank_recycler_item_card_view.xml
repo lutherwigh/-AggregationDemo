@@ -18,7 +18,6 @@
         android:layout_height="200dp"
         android:layout_margin="5dp"
         android:gravity="center"
-        android:background="@drawable/realcard_bg"
         >
 
         <ImageView

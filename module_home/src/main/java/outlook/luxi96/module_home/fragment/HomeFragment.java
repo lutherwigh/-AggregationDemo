@@ -73,7 +73,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding,HomeViewModel
 
     @Override
     public int initVariableId() {
-        return BR.viewModel;
+        return BR.homeModel;
     }
 
     @Override

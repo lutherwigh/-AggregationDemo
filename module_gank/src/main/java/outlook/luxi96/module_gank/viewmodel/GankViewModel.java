@@ -11,7 +11,6 @@ import me.goldze.mvvmhabit.binding.command.BindingConsumer;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 import me.tatarka.bindingcollectionadapter2.BindingViewPagerAdapter;
 import outlook.luxi96.module_gank.adapter.GankPagerAdapter;
-import outlook.luxi96.module_gank.adapter.ViewPagerBindingAdapter;
 import outlook.luxi96.module_gank.fragment.GankContentFragment;
 
 public class GankViewModel extends BaseViewModel {
@@ -37,16 +36,26 @@ public class GankViewModel extends BaseViewModel {
         @Override
         public void call(Integer index) {
             // setPage(index);
+            // 切换 fragment
+
             ToastUtils.showShort("pager 切换到" + titles[index] );
         }
     });
 
     public void initPages(String[] titles){
 
-//        items.clear();
         for (int i = 0; i < titles.length; i++) {
+
             PagerItemViewModel itemViewModel = new PagerItemViewModel(this, titles[i]);
-  //          items.add(itemViewModel);
+            fragments.add(itemViewModel.getContentFragment());
+        }
+
+    }
+
+    // 显示当前index的fragment
+    void setDisplayFragment(int index){
+        if(index < fragments.size()){
+
         }
     }
 

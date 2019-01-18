@@ -19,6 +19,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import me.goldze.mvvmhabit.base.BaseFragment;
 import moe.luther.library.base.router.RouterFragmentPath;
+import outlook.luxi96.module_gank.databinding.BR;
 import outlook.luxi96.module_gank.R;
 import outlook.luxi96.module_gank.adapter.ItemCardAdapter;
 import outlook.luxi96.module_gank.databinding.GankFragmentBinding;
@@ -72,7 +73,7 @@ public class GankFragment extends BaseFragment<GankFragmentBinding,GankViewModel
 
     @Override
     public int initVariableId() {
-        return BR.viewModel;
+        return BR.gankModel;
     }
 
     @Override
@@ -83,12 +84,6 @@ public class GankFragment extends BaseFragment<GankFragmentBinding,GankViewModel
         // 滑动关联TabLayout
         binding.homePager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.homeTabs));
 
-    }
-
-    void initRecycler(){
-        mList = new ArrayList<>();
-        // RecyclerViewModel<HeaderBean> headerViewModel = new RecyclerViewModel<HeaderBean>(R.layout.home_recycler_item_header,BR.header,new HeaderBean("recycer header"));
-        // mItemCardAdapter.addHeadView(headerViewModel);
     }
 
     void loadData(){

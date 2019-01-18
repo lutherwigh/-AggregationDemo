@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
     private void initFragments(){
         Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation();
         Fragment gankFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Gank.PAGER_GANK).navigation();
+        Fragment myFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.User.PAGE_MY).navigation();
 
         mFragments = new ArrayList<>();
         mFragments.add(homeFragment);

@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="home_model"
             type="outlook.luxi96.module_home.viewmodel.HomeViewModel"
             />
     </data>
@@ -34,11 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            binding:adapter="@{viewModel.adapter}"
-            binding:itemBinding="@{viewModel.itemBinding}"
-            binding:items="@{viewModel.items}"
-            binding:onPageSelectedCommand="@{viewModel.onPagerSelectCommand}"
-            binding:pageTitles="@{viewModel.pageTitles}" />
+            binding:adapter="@{home_model.adapter}"
+            binding:itemBinding="@{home_model.itemBinding}"
+            binding:items="@{home_model.items}"
+            binding:onPageSelectedCommand="@{home_model.onPagerSelectCommand}"
+            binding:pageTitles="@{home_model.pageTitles}" />
 
     </LinearLayout>
 

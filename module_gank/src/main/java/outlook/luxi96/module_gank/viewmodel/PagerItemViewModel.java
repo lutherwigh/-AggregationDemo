@@ -43,5 +43,8 @@ public class PagerItemViewModel extends ItemViewModel {
         }
     });
 
+    public GankContentFragment getContentFragment() {
+        return contentFragment;
+    }
 }
 

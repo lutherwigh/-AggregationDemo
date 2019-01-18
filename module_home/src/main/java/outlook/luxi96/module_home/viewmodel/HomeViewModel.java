@@ -18,7 +18,7 @@ import outlook.luxi96.module_home.BR;
 
 public class HomeViewModel extends BaseViewModel {
 
-    private String[] titles = {"Android","iOS","前端","拓展"};
+    private String[] titles = {"头条"};
 
     public ObservableList<PagerItemViewModel> items = new ObservableArrayList<>();
 

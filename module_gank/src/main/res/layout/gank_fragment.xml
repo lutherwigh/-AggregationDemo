@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="gank_model"
             type="outlook.luxi96.module_gank.viewmodel.GankViewModel"
             />
     </data>
@@ -34,11 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            binding:adapter="@{viewModel.adapter}"
-            binding:itemBinding="@{viewModel.itemBinding}"
-            binding:items="@{viewModel.fragments}"
-            binding:onPageSelectedCommand="@{viewModel.onPagerSelectCommand}"
-            binding:pageTitles="@{viewModel.pageTitles}" />
+            binding:adapter="@{gank_model.adapter}"
+            binding:itemBinding="@{gank_model.itemBinding}"
+            binding:items="@{gank_model.fragments}"
+            binding:onPageSelectedCommand="@{gank_model.onPagerSelectCommand}"
+            binding:pageTitles="@{gank_model.pageTitles}" />
 
     </LinearLayout>
 

@@ -8,6 +8,8 @@ import outlook.luxi96.module_login.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends BaseActivity<ActivityLoginBinding,LoginViewModel> {
 
+    // todo 微信授权登录 自研账户登录
+
 //    @BindView(R.id.login_login_btn)
 //    Button btn_login;
 //
