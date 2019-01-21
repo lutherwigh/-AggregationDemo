@@ -55,6 +55,7 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
         mFragments = new ArrayList<>();
         mFragments.add(homeFragment);
         mFragments.add(gankFragment);
+        mFragments.add(myFragment);
 
         changeFragment(gankFragment);
     }
@@ -70,11 +71,8 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
         controller.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int index, int old) {
-                if(index == 0 || index == 1){
-                    changeFragment(mFragments.get(index));
-                }else {
-                    changeFragment(mFragments.get(0));
-                }
+
+                changeFragment(mFragments.get(index));
 
                 binding.toolbar.setTitle(controller.getItemTitle(index));
             }
@@ -97,7 +95,8 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
     void initToolbar(){
         // transparent();
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setTitle("首页");
+        // getSupportActionBar().setTitle("首页");
+        binding.toolbar.setTitle("首页");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
     }

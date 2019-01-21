@@ -19,9 +19,9 @@ public class RouterFragmentPath {
      * Gank组件
      */
     public static class Gank {
-        private static final String WORK = "/gank";
+        private static final String GANK = "/gank";
         /*工作*/
-        public static final String PAGER_GANK = WORK + "/gank";
+        public static final String PAGER_GANK = GANK + "/gank";
     }
 
     /**

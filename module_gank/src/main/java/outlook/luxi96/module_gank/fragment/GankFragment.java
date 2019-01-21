@@ -1,27 +1,31 @@
 package outlook.luxi96.module_gank.fragment;
 
-import android.arch.lifecycle.ViewModel;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import me.goldze.mvvmhabit.base.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import moe.luther.library.base.router.RouterFragmentPath;
-import outlook.luxi96.module_gank.BR;
+
 import outlook.luxi96.module_gank.R;
-import outlook.luxi96.module_gank.databinding.GankFragmentBinding;
-import outlook.luxi96.module_gank.viewmodel.GankViewModel;
+import outlook.luxi96.module_gank.adapter.GankViewPagerAdapter;
 
 
 @Route(path = RouterFragmentPath.Gank.PAGER_GANK)
-public class GankFragment extends BaseFragment<GankFragmentBinding,GankViewModel> {
+public class GankFragment extends Fragment {
 
     private final static String TAG = "GankFragment";
 
@@ -30,6 +34,11 @@ public class GankFragment extends BaseFragment<GankFragmentBinding,GankViewModel
     private boolean isFirseLoad;
 
     private boolean isLoadMore;
+
+    GankViewPagerAdapter mPagerAdatper;
+
+    TabLayout tabLayout;
+    ViewPager pager;
 
     Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -46,38 +55,62 @@ public class GankFragment extends BaseFragment<GankFragmentBinding,GankViewModel
     });
 
     @Override
-    public int initContentView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        return R.layout.gank_fragment;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup parent, @Nullable Bundle bundle){
+        View rootView = LayoutInflater.from(getContext()).inflate(R.layout.gank_fragment,parent,false);
+        tabLayout = rootView.findViewById(R.id.gank_tabs);
+        pager = rootView.findViewById(R.id.gank_pager);
+
+        tabLayout.setupWithViewPager(pager);
+
+        // init ViewPagers
+        mPagerAdatper = new GankViewPagerAdapter(getChildFragmentManager());
+        List<GankContentFragment> fragmentList = new ArrayList<>();
+
+        for(int i = 0;i < titles.length;i++){
+            GankContentFragment fragment = new GankContentFragment();
+            fragment.setType(titles[i]);
+            fragmentList.add(fragment);
+        }
+        mPagerAdatper.setFragmentList(fragmentList);
+        pager.setAdapter(mPagerAdatper);
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        return rootView;
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-    }
 
-    @Override
-    public int initVariableId() {
-        return BR.gankModel;
-    }
 
-    @Override
-    public GankViewModel initViewModel(){
-        return new GankViewModel(getActivity().getApplication(),getChildFragmentManager());
-    }
-
-    @Override
-    public void initData() {
-        // 使用 TabLayout 和 ViewPager 相关联,并设置tab文字
-        binding.gankTabs.setupWithViewPager(binding.gankPager);
-        // 从gank开始
-        binding.gankPager.setCurrentItem(1);
-        // 滑动关联TabLayout
-        binding.gankPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.gankTabs));
-    }
-
-    @Override
-    public void initViewObservable() {
-        viewModel.initPages(titles);
-    }
+//    @Override
+//    public int initContentView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
+//        return R.layout.gank_fragment;
+//    }
+//
+//    @Override
+//    public int initVariableId() {
+//        return BR.gankModel;
+//    }
+//
+//    @Override
+//    public void initData() {
+//        // 使用 TabLayout 和 ViewPager 相关联,并设置tab文字
+//        binding.gankTabs.setupWithViewPager(binding.gankPager);
+//        // init pagers
+//        mPagerAdatper = new GankViewPagerAdapter(getChildFragmentManager());
+//        List<GankContentFragment> fragmentList = new ArrayList<>();
+//
+//        for(int i = 0;i < titles.length;i++){
+//            GankContentFragment fragment = new GankContentFragment();
+//            fragment.setType(titles[i]);
+//            fragmentList.add(fragment);
+//        }
+//        mPagerAdatper.setFragmentList(fragmentList);
+//        binding.gankPager.setAdapter(mPagerAdatper);
+//        binding.gankPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.gankTabs));
+//    }
+//
+//    @Override
+//    public void initViewObservable() {
+//        // viewModel.initPages(titles);
+//    }
 
 }

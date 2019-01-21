@@ -26,17 +26,12 @@ public class GankViewModel extends BaseViewModel {
 
     public ObservableList<PagerItemViewModel> items = new ObservableArrayList<>();
 
-    FragmentManager fragmentManager;
-
-    // public GankPagerAdapter adapter;
-
     public ItemBinding<PagerItemViewModel> itemBinding = ItemBinding.of(BR.page, R.layout.gank_viewpager_item);
 
-    public final ViewPagerBindingAdapter adapter = new ViewPagerBindingAdapter(getApplication(),fragmentManager);
+    public final ViewPagerBindingAdapter adapter = new ViewPagerBindingAdapter(getApplication());
 
-    public GankViewModel(@NonNull Application application, FragmentManager fm) {
+    public GankViewModel(@NonNull Application application) {
         super(application);
-        this.fragmentManager = fm;
     }
 
     public final BindingViewPagerAdapter.PageTitles<PagerItemViewModel> pageTitles = new BindingViewPagerAdapter.PageTitles<PagerItemViewModel>() {
@@ -62,12 +57,10 @@ public class GankViewModel extends BaseViewModel {
         for (int i = 0; i < titles.length; i++) {
             PagerItemViewModel itemViewModel = new PagerItemViewModel(this, titles[i]);
             items.add(itemViewModel);
-            // todo itemViewModel和contentFragment建立关联
             GankContentFragment fragment = new GankContentFragment();
             fragment.setType(titles[i]);
             fragmentList.add(fragment);
         }
-        adapter.setFragmentList(fragmentList);
     }
 
     // 显示当前index的fragment
