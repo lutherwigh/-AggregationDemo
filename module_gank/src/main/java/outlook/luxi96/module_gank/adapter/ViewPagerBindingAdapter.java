@@ -1,28 +1,21 @@
 package outlook.luxi96.module_gank.adapter;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.content.Context;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.disposables.Disposable;
-import me.goldze.mvvmhabit.utils.ToastUtils;
 import me.tatarka.bindingcollectionadapter2.BindingViewPagerAdapter;
-import outlook.luxi96.module_gank.model.bean.CardBean;
-import outlook.luxi96.module_gank.model.bean.NewsBean;
-import outlook.luxi96.module_gank.model.retrofitance.JuheRetrofitance;
+import outlook.luxi96.module_gank.databinding.GankViewpagerItemBinding;
+import outlook.luxi96.module_gank.fragment.GankContentFragment;
 import outlook.luxi96.module_gank.viewmodel.PagerItemViewModel;
-
 
 /**
  * Created by goldze on 2018/6/21.
@@ -34,12 +27,17 @@ public class ViewPagerBindingAdapter extends BindingViewPagerAdapter<PagerItemVi
 
     private Context mContext;
 
-    private ObservableList<CardBean> mList;
+    private final FragmentManager mFragmentManager;
 
-    private ItemCardAdapter mItemCardAdapter;
+    private List<GankContentFragment> fragmentList;
 
-    public ViewPagerBindingAdapter(Context context) {
+    private FragmentTransaction mCurTransaction = null;
+
+    private Fragment mCurrentPrimaryItem = null;
+
+    public ViewPagerBindingAdapter(Context context,FragmentManager fm) {
         this.mContext = context;
+        this.mFragmentManager = fm;
     }
 
     @Override
@@ -49,80 +47,98 @@ public class ViewPagerBindingAdapter extends BindingViewPagerAdapter<PagerItemVi
 
         // 这里可以强转成ViewPagerItemViewModel对应的ViewDataBinding，
 
-        ItemViewpagerBinding _binding = (ItemViewpagerBinding) binding;
+        GankViewpagerItemBinding _binding = (GankViewpagerItemBinding) binding;
 
-        ((ItemViewpagerBinding) binding).homeRecycler.setLayoutManager(new LinearLayoutManager(mContext));
-
-        // RecyclerViewModel<HeaderBean> headerViewModel = new RecyclerViewModel<HeaderBean>(R.layout.home_recycler_item_header,BR.header,new HeaderBean("recycer header"));
-
-        mList = new ObservableArrayList<>();
-        mItemCardAdapter = new ItemCardAdapter(mList);
-
-        // mItemCardAdapter.addHeadView(headerViewModel);
-
-        ((ItemViewpagerBinding) binding).homeRecycler.setAdapter(mItemCardAdapter);
-
-        item.clickEvent.observe((LifecycleOwner) _binding.getRoot().getContext(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                ToastUtils.showShort(s);
-            }
-        });
-
-        // loadData();
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         super.destroyItem(container, position, object);
-        mContext = null;
+        if (this.mCurTransaction == null) {
+            this.mCurTransaction = this.mFragmentManager.beginTransaction();
+        }
+
+        this.mCurTransaction.detach((Fragment)object);
     }
 
-    private void loadData(){
+    public void setFragmentList(List<GankContentFragment> fragmentList) {
+        this.fragmentList = fragmentList;
+    }
 
-        final io.reactivex.Observer<NewsBean> observer = new io.reactivex.Observer<NewsBean>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+    public Fragment getItem(int position){
+        return fragmentList.get(position);
+    }
 
+    public void startUpdate(@NonNull ViewGroup container) {
+        if (container.getId() == -1) {
+            throw new IllegalStateException("ViewPager with adapter " + this + " requires a view id");
+        }
+    }
+
+    @NonNull
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        if (this.mCurTransaction == null) {
+            this.mCurTransaction = this.mFragmentManager.beginTransaction();
+        }
+
+        long itemId = this.getItemId(position);
+        String name = makeFragmentName(container.getId(), itemId);
+        Fragment fragment = this.mFragmentManager.findFragmentByTag(name);
+        if (fragment != null) {
+            this.mCurTransaction.attach(fragment);
+        } else {
+            fragment = this.getItem(position);
+            this.mCurTransaction.add(container.getId(), fragment, makeFragmentName(container.getId(), itemId));
+        }
+
+        if (fragment != this.mCurrentPrimaryItem) {
+            fragment.setMenuVisibility(false);
+            fragment.setUserVisibleHint(false);
+        }
+
+        return fragment;
+    }
+
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        Fragment fragment = (Fragment)object;
+        if (fragment != this.mCurrentPrimaryItem) {
+            if (this.mCurrentPrimaryItem != null) {
+                this.mCurrentPrimaryItem.setMenuVisibility(false);
+                this.mCurrentPrimaryItem.setUserVisibleHint(false);
             }
 
-            @Override
-            public void onNext(NewsBean newsBean) {
-                mList.clear();
-                List<NewsBean.ResultBean.DataBean> list = new ArrayList<>();
-                if(newsBean != null){
-                    if(newsBean.getResult() != null){
+            fragment.setMenuVisibility(true);
+            fragment.setUserVisibleHint(true);
+            this.mCurrentPrimaryItem = fragment;
+        }
 
-                        {
-                            if(newsBean.getResult().getData() != null){
-                                list = newsBean.getResult().getData();
-                                for(NewsBean.ResultBean.DataBean bean : list){
-                                    mList.add(new CardBean(bean));
+    }
 
-                                }
-                            }
-                        }
+    public void finishUpdate(@NonNull ViewGroup container) {
+        if (this.mCurTransaction != null) {
+            this.mCurTransaction.commitNowAllowingStateLoss();
+            this.mCurTransaction = null;
+        }
 
-                    }else{
-                        Log.d(TAG,"response error code: " + newsBean.getError_code());
-                    }
-                }
-                Log.d(TAG,"list size" + mList.size());
-                mItemCardAdapter.notifyDataSetChanged();
-            }
+    }
 
-            @Override
-            public void onError(Throwable e) {
-                e.printStackTrace();
-                Toast.makeText(mContext,"主页信息获取失败",Toast.LENGTH_SHORT).show();
-            }
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return ((Fragment)object).getView() == view;
+    }
 
-            @Override
-            public void onComplete() {
+    public Parcelable saveState() {
+        return null;
+    }
 
-            }
-        };
-        JuheRetrofitance.getInstance().getNews(observer);
+    public void restoreState(Parcelable state, ClassLoader loader) {
+    }
+
+    public long getItemId(int position) {
+        return (long)position;
+    }
+
+    private static String makeFragmentName(int viewId, long id) {
+        return "android:switcher:" + viewId + ":" + id;
     }
 
 }

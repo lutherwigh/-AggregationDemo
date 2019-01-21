@@ -1,23 +1,16 @@
 package moe.luther.demo.page.login.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import java.util.Objects;
 
 import moe.luther.demo.R;
 import moe.luther.demo.view.base.BaseActivity;
-import moe.luther.demo.page.main.activity.MainActivity;
-import moe.luther.demo.page.login.LoginManager;
 
 public class LoginActivity extends BaseActivity {
 
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.app_activity_login;
     }
 
     @Override

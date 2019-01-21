@@ -6,6 +6,8 @@ import java.util.List;
 
 import moe.luther.library.base.base.adapter.BaseRecyclerViewAapter;
 import moe.luther.library.base.base.adapter.BaseRecyclerViewHolder;
+import outlook.luxi96.module_gank.R;
+import outlook.luxi96.module_gank.BR;
 import outlook.luxi96.module_gank.model.bean.CardBean;
 
 public class ItemCardAdapter extends BaseRecyclerViewAapter<CardBean> {
@@ -20,7 +22,7 @@ public class ItemCardAdapter extends BaseRecyclerViewAapter<CardBean> {
             case 1:
                 // return R.layout.home_recycler_item_card_view;
             default:
-                return R.layout.home_recycler_item_card_view;
+                return R.layout.gank_recycler_item_card_view;
         }
     }
 

@@ -12,29 +12,17 @@ import outlook.luxi96.module_gank.fragment.GankContentFragment;
 
 public class PagerItemViewModel extends ItemViewModel {
 
-    // 用fragment 填充
-    GankContentFragment contentFragment;
-
     private final static String TAG = "PagerItemViewModel";
 
     private boolean isLoadMore = false;
 
     public String type;
-    public SingleLiveEvent<String> clickEvent = new SingleLiveEvent();
 
     public PagerItemViewModel(@NonNull BaseViewModel viewModel, String type) {
         super(viewModel);
         this.type = type;
-
-        contentFragment = new GankContentFragment();
+        // 要根据类型新建contentFragment 修改请求参数
     }
-
-    public BindingCommand onClick = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            // 将点击事件交给eventBus处理
-        }
-    });
 
     public BindingCommand onRefresh = new BindingCommand(new BindingAction() {
         @Override
@@ -43,8 +31,5 @@ public class PagerItemViewModel extends ItemViewModel {
         }
     });
 
-    public GankContentFragment getContentFragment() {
-        return contentFragment;
-    }
 }
 

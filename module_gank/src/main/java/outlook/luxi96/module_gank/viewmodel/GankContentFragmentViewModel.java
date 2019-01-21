@@ -6,6 +6,9 @@ import android.support.annotation.NonNull;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 
 public class GankContentFragmentViewModel extends BaseViewModel {
+
+
+
     public GankContentFragmentViewModel(@NonNull Application application) {
         super(application);
     }

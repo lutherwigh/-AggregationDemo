@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
         mFragments.add(homeFragment);
         mFragments.add(gankFragment);
 
-        changeFragment(homeFragment);
+        changeFragment(gankFragment);
     }
 
     private void initBottom(){
