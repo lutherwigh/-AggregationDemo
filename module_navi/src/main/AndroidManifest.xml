@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="outlook.luxi96.module_navi" />
+    package="outlook.luxi96.module_navi">
+
+    <application>
+
+        <activity android:name=".NaviActivity"/>
+
+    </application>
+
+</manifest>

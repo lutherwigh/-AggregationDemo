@@ -68,10 +68,8 @@ dependencies {
         // 组件独立运行时，宿主项目直接依赖基础库，避免编译错误
         implementation project(':library_base')
     }else {
-        api project(':library_base')
         // 登录模块
         // implementation project(':module_login')
-
         // 业务模块
         implementation project(':module_main')
         // 主页模块

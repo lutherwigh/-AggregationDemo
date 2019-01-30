@@ -7,19 +7,21 @@
         android:name="moe.luther.library.base.debug.DebugApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/main_home"
+        android:label="@string/main_name"
         tools:replace="label"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
 
-        <activity android:name=".ui.MainActivity"/>
+        <activity android:name="outlook.luxi96.module_main.ui.MainActivity"/>
 
-        <activity android:name=".ui.SplashActivity">
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name="outlook.luxi96.module_main.ui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>

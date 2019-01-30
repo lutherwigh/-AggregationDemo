@@ -20,6 +20,8 @@ public class ModuleLifecycleReflexs {
     private static final String MsgInit = "com.goldze.msg.MsgModuleInit";
     //用户业务模块
     private static final String UserInit = "com.goldze.user.UserModuleInit";
+    // navi模块
+    private static final String NaviInit = "outlook.luxi96.module_navi.NaviInit";
 
-    public static String[] initModuleNames = {BaseInit, MainInit,SignInit, HomeInit, WorkInit, MsgInit,UserInit};
+    public static String[] initModuleNames = {BaseInit, NaviInit};
 }
