@@ -11,7 +11,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         >
@@ -19,10 +19,9 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/navi_collapsing_toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:minHeight="30dp"
+            android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="scroll"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:fitsSystemWindows="true"
             >
 
@@ -37,8 +36,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/navi_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:layout_collapseMode="pin"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:title=" "
                 app:title=" "
                 >
@@ -70,21 +70,6 @@
                 <!--/>-->
 
         </android.support.design.widget.CollapsingToolbarLayout>
-
-        <TextView
-            android:id="@+id/navi_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Readme.md"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Readme.md2"
-            android:gravity="center"
-            />
 
     </android.support.design.widget.AppBarLayout>
 

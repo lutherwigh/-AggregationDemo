@@ -9,8 +9,11 @@ import android.databinding.ViewDataBinding;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,9 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 import me.tatarka.bindingcollectionadapter2.BindingViewPagerAdapter;
+import moe.luther.library.base.base.adapter.BaseRecyclerViewAapter;
 import moe.luther.library.base.base.adapter.RecyclerViewModel;
+import moe.luther.library.base.router.RouterActivityPath;
 import outlook.luxi96.module_home.R;
 import outlook.luxi96.module_home.databinding.ItemViewpagerBinding;
 import outlook.luxi96.module_home.model.bean.CardBean;
@@ -60,7 +65,12 @@ public class ViewPagerBindingAdapter extends BindingViewPagerAdapter<PagerItemVi
 
         mList = new ObservableArrayList<>();
         mItemCardAdapter = new ItemCardAdapter(mList);
-
+        mItemCardAdapter.setMyItemClickListener(new BaseRecyclerViewAapter.MyItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ARouter.getInstance().build(RouterActivityPath.Navi.PAGER_DETAIL).navigation();
+            }
+        });
         // mItemCardAdapter.addHeadView(headerViewModel);
 
         ((ItemViewpagerBinding) binding).homeRecycler.setAdapter(mItemCardAdapter);

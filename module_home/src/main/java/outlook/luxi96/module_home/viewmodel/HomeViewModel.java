@@ -18,7 +18,7 @@ import outlook.luxi96.module_home.BR;
 
 public class HomeViewModel extends BaseViewModel {
 
-    private String[] titles = {"头条"};
+    private final String[] titles = {"头条", "社会", "国内", "国际", "娱乐", "体育", "军事", "科技", "财经", "时尚"};
 
     public ObservableList<PagerItemViewModel> items = new ObservableArrayList<>();
 
@@ -41,10 +41,7 @@ public class HomeViewModel extends BaseViewModel {
 
     public final ViewPagerBindingAdapter adapter = new ViewPagerBindingAdapter(getApplication());
 
-    public HomeViewModel(@NonNull Application application) {
-        // adapter.onBindBinding();
-        super(application);
-    }
+    public HomeViewModel(@NonNull Application application) { super(application);}
 
     /**
      * 设置 home pages
@@ -54,10 +51,9 @@ public class HomeViewModel extends BaseViewModel {
         items.clear();
         for (int i = 0; i < titles.length; i++) {
             PagerItemViewModel itemViewModel = new PagerItemViewModel(this, titles[i]);
-            // ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater,R.layout.item_viewpager,)
             items.add(itemViewModel);
         }
-        setPage(0);
+        // setPage(0);
     }
 
     public void setPage(int position){

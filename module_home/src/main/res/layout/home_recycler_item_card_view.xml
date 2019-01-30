@@ -23,6 +23,7 @@
 
         <ImageView
             android:id="@+id/card_home_bg"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="fitXY"
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{bean.text}"
+            android:textColor="@color/black"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             />

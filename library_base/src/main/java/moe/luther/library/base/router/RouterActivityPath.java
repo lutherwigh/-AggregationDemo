@@ -16,6 +16,12 @@ public class RouterActivityPath {
         public static final String PAGER_MAIN = MAIN +"/Main";
     }
 
+    public static class Navi{
+        private static final String NAVI = "/navi";
+
+        public static final String PAGER_DETAIL = NAVI + "/Detail";
+    }
+
     /**
      * 身份验证组件
      */

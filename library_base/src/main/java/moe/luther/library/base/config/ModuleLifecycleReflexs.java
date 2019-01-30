@@ -9,19 +9,19 @@ package moe.luther.library.base.config;
 public class ModuleLifecycleReflexs {
     private static final String BaseInit = "moe.luther.library.base.base.BaseModuleInit";
     //主业务模块
-    private static final String MainInit = "com.goldze.main.MainModuleInit";
+    private static final String MainInit = "outlook.luxi96.module_main.MainModuleInit";
     //登录验证模块
     private static final String SignInit = "com.goldze.sign.SignModuleInit";
     //首页业务模块
-    private static final String HomeInit = "com.goldze.home.HomeModuleInit";
+    private static final String HomeInit = "outlook.luxi96.module_home.HomeInit";
     //工作业务模块
     private static final String WorkInit = "com.goldze.work.WorkModuleInit";
     //消息业务模块
     private static final String MsgInit = "com.goldze.msg.MsgModuleInit";
     //用户业务模块
-    private static final String UserInit = "com.goldze.user.UserModuleInit";
+    private static final String UserInit = "outlook.luxi96.module_my.MyInit";
     // navi模块
     private static final String NaviInit = "outlook.luxi96.module_navi.NaviInit";
 
-    public static String[] initModuleNames = {BaseInit, NaviInit};
+    public static String[] initModuleNames = {BaseInit,NaviInit,MainInit,HomeInit,UserInit};
 }

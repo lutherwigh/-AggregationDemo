@@ -1,21 +1,48 @@
 package outlook.luxi96.module_navi;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zzhoujay.richtext.RichText;
 
 import butterknife.BindView;
+import me.goldze.mvvmhabit.utils.MaterialDialogUtils;
 import moe.luther.library.base.base.BaseActivity;
+import moe.luther.library.base.router.RouterActivityPath;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+
+@Route(path = RouterActivityPath.Navi.PAGER_DETAIL)
 public class NaviActivity extends BaseActivity {
 
-    @BindView(R.id.navi_toolbar)
+    @BindView(R2.id.navi_toolbar)
     Toolbar toolbar;
     @BindView(R.id.text_container)
     TextView textContainer;
 
+    // 或者直接传一个实体类进来
+    String url;
+
+    String title;
+
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    RichText.fromHtml(msg.getData().getString("body"))
+                            .into(textContainer);
+                    break;
+            }
+            return false;
+        }
+    });
 
     @Override
     public int getResId() {
@@ -24,128 +51,41 @@ public class NaviActivity extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        RichText.fromMarkdown("# RichText [ ![Download](https://api.bintray.com/packages/zzhoujay/maven/richtext/images/download.svg) ](https://bintray.com/zzhoujay/maven/richtext/_latestVersion)\n" +
-                "\n" +
-                "> Android平台下的富文本解析器\n" +
-                "\n" +
-                "* 流式操作\n" +
-                "* 低侵入性\n" +
-                "* 依赖少，只依赖了`disklrucache`和`support v4`\n" +
-                "* 支持Html和Markdown格式文本\n" +
-                "* 支持图片点击和长按事件\n" +
-                "* 链接点击事件和长按事件\n" +
-                "* 支持设置加载中和加载错误时的图片\n" +
-                "* 支持自定义超链接的点击回调\n" +
-                "* 支持修正图片宽高\n" +
-                "* 支持GIF图片\n" +
-                "* 支持Base64编码、本地图片和Assets目录图片\n" +
-                "* 自持自定义图片加载器、图片加载器\n" +
-                "* 支持内存和磁盘双缓存\n" +
-                "* 已经加入对自定义Html解析器的支持\n" +
-                "\n" +
-                "### 效果\n" +
-                "\n" +
-                "![演示](image/image.jpg \"演示\")\n" +
-                "\n" +
-                "\n" +
-                "### gradle中引用的方法\n" +
-                "\n" +
-                "```\n" +
-                "compile 'com.zzhoujay.richtext:richtext:latest-version'\n" +
-                "```\n" +
-                "\n" +
-                "### 使用新的Html解析器\n" +
-                "\n" +
-                "只需加入此依赖即可，无须其他操作，新Html解析器对原生Html解析器的功能做了补充\n" +
-                "```\n" +
-                "compile 'com.zzhoujay:html:latest-version'\n" +
-                "```\n" +
-                "\n" +
-                "新Html解析器增加了对代码块的支持，代码块可以触发点击事件，通过`urlClick`设置，\n" +
-                "代码块回调的参数由`code://`开头\n" +
-                "\n" +
-                "使用新Html解析器遇到问题请在[https://github.com/zzhoujay/Htm](https://github.com/zzhoujay/Html)提issue\n" +
-                "\n" +
-                "### 关于issue\n" +
-                "\n" +
-                "最近一段时间会比较忙，issue不能及时处理，一般会定时抽空集中解决issue，但时间有限解决速度上不敢保证。\n" +
-                "\n" +
-                "欢迎提交pull request帮助完善这个项目\n" +
-                "\n" +
-                "### 注意\n" +
-                "\n" +
-                "在第一次调用RichText之前先调用`RichText.initCacheDir()`方法设置缓存目录\n" +
-                "\n" +
-                "ImageFixCallback的回调方法不一定是在主线程回调，注意不要进行UI操作\n" +
-                "\n" +
-                "本地图片由根路径`\\`开头，Assets目录图片由`file:///android_asset/`开头\n" +
-                "\n" +
-                "Gif图片播放不支持硬件加速，若要使用Gif图片请先关闭TextView的硬件加速\n" +
-                "```\n" +
-                "textView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);\n" +
-                "```\n" +
-                "\n" +
-                "### 使用方式\n" +
-                "\n" +
-                "[多看wiki](https://github.com/zzhoujay/RichText/wiki)、[多看wiki](https://github.com/zzhoujay/RichText/wiki)、[多看wiki](https://github.com/zzhoujay/RichText/wiki)，重要的事情说三遍\n" +
-                "\n" +
-                "### 关于自定义的Html解析器\n" +
-                "\n" +
-                "Html解析器子项目：[Html](https://github.com/zzhoujay/Htm)\n" +
-                "\n" +
-                "### 关于Markdown\n" +
-                "\n" +
-                "Markdown源于子项目：[Markdown](https://github.com/zzhoujay/Markdown)\n" +
-                "\n" +
-                "若在markdown解析过程中发现什么问题可以在该项目中反馈\n" +
-                "\n" +
-                "### 关于富文本编辑器\n" +
-                "\n" +
-                "编辑器开发已暂停，[RichEditor](https://github.com/zzhoujay/RichEditor)\n" +
-                "\n" +
-                "### 具体使用请查看demo\n" +
-                "\n" +
-                "[ListView Demo](https://github.com/zzhoujay/RichText/blob/master/app/src/main/java/zhou/demo/ListViewActivity.java)、\n" +
-                "[RecyclerView Demo](https://github.com/zzhoujay/RichText/blob/master/app/src/main/java/zhou/demo/RecyclerViewActivity.java)、\n" +
-                "[Gif Demo](https://github.com/zzhoujay/RichText/blob/master/app/src/main/java/zhou/demo/GifActivity.java)\n" +
-                "\n" +
-                "\n" +
-                "### License\n" +
-                "\n" +
-                "```\n" +
-                "The MIT License (MIT)\n" +
-                "\n" +
-                "Copyright (c) 2016 zzhoujay\n" +
-                "\n" +
-                "Permission is hereby granted, free of charge, to any person obtaining a copy\n" +
-                "of this software and associated documentation files (the \"Software\"), to deal\n" +
-                "in the Software without restriction, including without limitation the rights\n" +
-                "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n" +
-                "copies of the Software, and to permit persons to whom the Software is\n" +
-                "furnished to do so, subject to the following conditions:\n" +
-                "\n" +
-                "The above copyright notice and this permission notice shall be included in all\n" +
-                "copies or substantial portions of the Software.\n" +
-                "\n" +
-                "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n" +
-                "\n" +
-                "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n" +
-                "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n" +
-                "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n" +
-                "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n" +
-                "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n" +
-                "SOFTWARE.\n" +
-                "```\n" +
-                "\n" +
-                "_by zzhoujay_")
-                .into(textContainer);
-
-        // initToolbar();
+        url = "https://www.ithome.com/0/407/910.htm";
+        // url = getIntent().getStringExtra("url");
+        // LogUtil.d("detail " + url);
+        getPageContent(url);
+        findViewById(R.id.navi_toolbar);
     }
 
     void initToolbar(){
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
+    }
+
+    void getPageContent(String url){
+
+        final Callback<String> observer = new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                // LogUtil.d(response.toString());
+                String body = response.body();
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("body",body);
+                // LogUtil.d(body);
+                msg.setData(data);
+                msg.what = 1;
+                handler.sendMessage(msg);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                 MaterialDialogUtils.showBasicDialog(NaviActivity.this,"callback error" + t.getMessage());
+            }
+        };
+
+        // JuheRetrofitance.getInstance().getHtml(observer,url);
     }
 
 }

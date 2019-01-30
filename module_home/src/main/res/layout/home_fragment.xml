@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/main_tab_text_appearance"
+            app:tabMode="scrollable"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabSelectedTextColor="@color/colorPrimaryDark"

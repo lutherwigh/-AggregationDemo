@@ -15,18 +15,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <!--<activity-->
-            <!--android:name="outlook.luxi96.module_main.ui.SplashActivity"-->
-            <!--android:theme="@style/MainTheme"-->
-            <!--&gt;-->
+        <activity
+            android:name="outlook.luxi96.module_main.ui.SplashActivity"
+            android:theme="@style/MainTheme"
+            >
 
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-        <!--</activity>-->
+        </activity>
 
 
     </application>

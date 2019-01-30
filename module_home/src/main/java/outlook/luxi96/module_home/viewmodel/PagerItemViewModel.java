@@ -14,6 +14,8 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import me.goldze.mvvmhabit.bus.event.SingleLiveEvent;
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 import moe.luther.library.base.base.adapter.BaseRecyclerViewAapter;
 import moe.luther.library.base.base.adapter.RecyclerViewModel;
+import moe.luther.library.base.router.RouterActivityPath;
 import outlook.luxi96.module_home.BR;
 import outlook.luxi96.module_home.R;
 import outlook.luxi96.module_home.adapter.ItemCardAdapter;
@@ -97,6 +100,7 @@ public class PagerItemViewModel extends ItemViewModel {
 
                 switch (view.getId()){
                     default:
+                        ARouter.getInstance().build(RouterActivityPath.Navi.PAGER_DETAIL).navigation();
                         // 点击跳转
                         break;
                 }

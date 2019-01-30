@@ -48,17 +48,17 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
     }
 
     private void initFragments(){
-        // Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation();
+        Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation();
         Fragment gankFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Gank.PAGER_GANK).navigation();
         Fragment myFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.User.PAGE_MY).navigation();
 
         mFragments = new ArrayList<>();
-//        mFragments.add(homeFragment);
+        mFragments.add(homeFragment);
         mFragments.add(gankFragment);
-        mFragments.add(myFragment);
+//        mFragments.add(myFragment);
         mFragments.add(myFragment);
 
-        changeFragment(gankFragment);
+        changeFragment(homeFragment);
     }
 
     private void initBottom(){
@@ -94,9 +94,9 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
     }
 
     void initToolbar(){
-        // transparent();
+        transparent();
         setSupportActionBar(binding.toolbar);
-        // getSupportActionBar().setTitle("首页");
+        getSupportActionBar().setTitle("首页");
         binding.toolbar.setTitle("首页");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(true);

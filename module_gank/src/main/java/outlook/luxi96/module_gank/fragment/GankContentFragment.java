@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import me.goldze.mvvmhabit.base.BaseFragment;
-import outlook.luxi96.module_gank.R;
 import outlook.luxi96.module_gank.BR;
+import outlook.luxi96.module_gank.R;
 import outlook.luxi96.module_gank.databinding.GankContentFragmentBinding;
 import outlook.luxi96.module_gank.viewmodel.GankContentFragmentViewModel;
 
