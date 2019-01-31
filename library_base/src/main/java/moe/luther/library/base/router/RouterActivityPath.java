@@ -14,6 +14,15 @@ public class RouterActivityPath {
         private static final String MAIN = "/main";
         /*主业务界面*/
         public static final String PAGER_MAIN = MAIN +"/Main";
+
+    }
+
+    public static class Home{
+
+        private  static final String HOME = "/home";
+
+        public static final String PAGER_TEST = HOME + "/test";
+
     }
 
     public static class Navi{

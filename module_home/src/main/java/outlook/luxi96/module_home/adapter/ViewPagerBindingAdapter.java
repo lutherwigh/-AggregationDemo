@@ -3,6 +3,7 @@ package outlook.luxi96.module_home.adapter;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.Postcard;
+import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
@@ -67,8 +70,21 @@ public class ViewPagerBindingAdapter extends BindingViewPagerAdapter<PagerItemVi
         mItemCardAdapter = new ItemCardAdapter(mList);
         mItemCardAdapter.setMyItemClickListener(new BaseRecyclerViewAapter.MyItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                ARouter.getInstance().build(RouterActivityPath.Navi.PAGER_DETAIL).navigation();
+            public void onItemClick(View view, final int position) {
+                ToastUtils.showShort("跳转");
+
+                ARouter.getInstance().build(RouterActivityPath.Navi.PAGER_DETAIL).navigation(mContext, new NavCallback() {
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        postcard.getAction();
+                    }
+                });
+                ARouter.getInstance().build(RouterActivityPath.Home.PAGER_TEST).navigation(mContext, new NavCallback() {
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        postcard.getAction();
+                    }
+                });
             }
         });
         // mItemCardAdapter.addHeadView(headerViewModel);

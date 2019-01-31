@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/module_main" />
             <option value="$PROJECT_DIR$/module_my" />
             <option value="$PROJECT_DIR$/module_navi" />
+            <option value="$PROJECT_DIR$/module_ref" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

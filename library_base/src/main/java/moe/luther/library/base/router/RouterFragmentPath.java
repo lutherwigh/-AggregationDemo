@@ -50,4 +50,10 @@ public class RouterFragmentPath {
         /*我的*/
         public static final String PAGE_MY = USER + "/my";
     }
+
+    public static class Test{
+        private static final String TEST = "/test";
+
+        public static final String PAGE_TEST = TEST + "test";
+    }
 }

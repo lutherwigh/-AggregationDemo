@@ -51,12 +51,14 @@ public class MainActivity extends BaseActivity<MainActivityBinding,MainViewModel
         Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation();
         Fragment gankFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Gank.PAGER_GANK).navigation();
         Fragment myFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.User.PAGE_MY).navigation();
+        Fragment refFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Test.PAGE_TEST).navigation();
+
 
         mFragments = new ArrayList<>();
         mFragments.add(homeFragment);
         mFragments.add(gankFragment);
 //        mFragments.add(myFragment);
-        mFragments.add(myFragment);
+        mFragments.add(refFragment);
 
         changeFragment(homeFragment);
     }

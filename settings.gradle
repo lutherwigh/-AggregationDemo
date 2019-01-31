@@ -1,4 +1,4 @@
-include ':app', ':library_base', ':library_res',
+include ':app', ':library_base', ':library_res', ':module_ref',
         ':module_login',
         ':module_main',
         ':module_gank', ':module_home', ':module_my',

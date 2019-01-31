@@ -23,7 +23,7 @@ public class NaviActivity extends BaseActivity {
 
     @BindView(R2.id.navi_toolbar)
     Toolbar toolbar;
-    @BindView(R.id.text_container)
+    @BindView(R2.id.text_container)
     TextView textContainer;
 
     // 或者直接传一个实体类进来
